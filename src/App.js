@@ -8,7 +8,6 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [city, setCity] = useState("New York City")
   const [results, setResults] = useState(null);
-  const [location, setLocation] = useState({ lng: 34.038, lat: -118.24881 })
 
   useEffect(() => {
     fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric" + "&appid=" + process.env.REACT_APP_APIKEY)
@@ -51,7 +50,7 @@ function App() {
         </div>
       </div>
       {isLoaded && results && <>
-        <MyMap center={location} city={results.name} country={results.sys.country} weather={results.weather[0].main} feels_like={results.main.feels_like}/>
+        <MyMap location={results.coord} city={results.name} country={results.sys.country} weather={results.weather[0].main} feels_like={results.main.feels_like}/>
       </>}
     </>
   }

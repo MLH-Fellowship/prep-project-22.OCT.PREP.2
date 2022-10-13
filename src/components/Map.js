@@ -8,16 +8,16 @@ var marker = L.icon({
     iconSize: [40, 40],
 });
 
-const MyMap = ({ center, city, country, weather, feels_like}) => {
+const MyMap = ({ location, city, country, weather, feels_like}) => {
+    const coord = [location.lat, location.lon]
     return (
         <div className="map">
             <MapContainer className="map"
-                center={[center.lng, center.lat]}
-                zoom={13}>
+                center={coord}
+                zoom={3}>
                 <TileLayer
-                    noWrap={true}
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-                <Marker position={[34.038, -118.24881]}
+                <Marker position={coord}
                     icon={marker}>
                     <Popup>
                        <b>{city}, {country}</b> <br/>
