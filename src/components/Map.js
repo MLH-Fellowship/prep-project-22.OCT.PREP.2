@@ -1,4 +1,4 @@
-import React, { useRef, useMemo } from "react";
+import React from "react";
 import L from "leaflet";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import './Map.css'
@@ -21,7 +21,7 @@ const MyMap = ({ center, city, country, weather, feels_like}) => {
                     icon={marker}>
                     <Popup>
                        <b>{city}, {country}</b> <br/>
-                       <b>Temp: </b> {weather} <br/>
+                       <b>Weather: </b> {weather} <br/>
                        <b>Feels like: </b>{feels_like}°C <br/>
                     </Popup>
                 </Marker>
