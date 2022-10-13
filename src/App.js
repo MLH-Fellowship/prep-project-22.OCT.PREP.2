@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import './App.css';
 import logo from './mlh-prep.png'
+import MyMap from './components/Map'
 
 function App() {
   const [error, setError] = useState(null);
@@ -48,6 +49,9 @@ function App() {
           </>}
         </div>
       </div>
+      {isLoaded && results && <>
+        <MyMap location={results.coord} city={results.name} country={results.sys.country} weather={results.weather[0].main} feels_like={results.main.feels_like}/>
+      </>}
     </>
   }
 }
