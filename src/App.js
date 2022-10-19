@@ -4,6 +4,7 @@ import './App.css';
 import Results from './components/results-components';
 import logo from './mlh-prep.png';
 import MyMap from './components/Map';
+import Items from './Itemstobring';
 
 function App() {
 	const [error, setError] = useState(null);
@@ -53,6 +54,7 @@ function App() {
 				</div>
 				{isLoaded && results && (
 					<>
+						<Items ok={results.weather[0].main} />
 						<MyMap
 							location={results.coord}
 							city={results.name}
