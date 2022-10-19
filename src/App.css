@@ -20,13 +20,43 @@ input {
 }
 
 .Results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background-color: white;
-  margin-left: 150px;
-  margin-right: 150px;
-  margin-top: 20px;
+  margin: 20px auto;
+  width: 580px;
   border-radius: 8px;
   color: black;
   padding: 10px;
+  height: 300px;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+/* media query for devices smaller than 600px (iPhone) */
+@media only screen and (max-width: 600px) {
+  .Results {
+    width: 90%;
+  }
+}
+
+
+.dots-loader{
+  width: 60px;
+  aspect-ratio: 2;
+  --_g: no-repeat radial-gradient(circle closest-side,#133667 90%,#0000);
+  background: 
+    var(--_g) 0%   50%,
+    var(--_g) 50%  50%,
+    var(--_g) 100% 50%;
+  background-size: calc(100%/3) 50%;
+  animation: bounce 1s infinite linear;
+}
+@keyframes bounce {
+    20%{background-position:0%   0%, 50%  50%,100%  50%}
+    40%{background-position:0% 100%, 50%   0%,100%  50%}
+    60%{background-position:0%  50%, 50% 100%,100%   0%}
+    80%{background-position:0%  50%, 50%  50%,100% 100%}
 }
 
