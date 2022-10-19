@@ -90,6 +90,9 @@ function App() {
         </div>
         {isLoaded && results && <Maps city={city} results={results} getWeatherFromCoordinates={getWeatherFromCoordinates}></Maps>}
       </div>
+      {isLoaded && results && <>
+        <MyMap location={results.coord} city={results.name} country={results.sys.country} weather={results.weather[0].main} feels_like={results.main.feels_like}/>
+      </>}
     </>
   }
 }
