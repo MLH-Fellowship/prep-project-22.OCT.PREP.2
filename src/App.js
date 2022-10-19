@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import './App.css';
 import logo from './mlh-prep.png'
 import Maps from "./Map/Map";
+import Items from './Itemstobring'
 
 function App() {
   const [error, setError] = useState(null);
@@ -91,8 +92,11 @@ function App() {
         {isLoaded && results && <Maps city={city} results={results} getWeatherFromCoordinates={getWeatherFromCoordinates}></Maps>}
       </div>
       {isLoaded && results && <>
+        <Items ok = {results.weather[0].main}    /> 
         <MyMap location={results.coord} city={results.name} country={results.sys.country} weather={results.weather[0].main} feels_like={results.main.feels_like}/>
+
       </>}
+
     </>
   }
 }

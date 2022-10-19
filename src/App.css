@@ -35,3 +35,24 @@ input {
   background-color: red;
   color: white;
 }
+
+
+.Items-to-bring{
+  margin-left: 150px;
+  margin-top: 20px;
+  border-radius: 8px;
+  margin-right: 150px;
+  background-color: rgba(64, 65, 70, 0.63);
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.Items-box{
+  display: flex;
+  justify-content: center;
+  height: 150px;
+  }
+
+.item {
+  margin: 20px;
+} 
+
