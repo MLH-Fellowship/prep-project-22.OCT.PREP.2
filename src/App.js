@@ -1,15 +1,55 @@
 import { useEffect, useState } from "react";
 import './App.css';
 import logo from './mlh-prep.png'
+import Maps from "./Map/Map";
 
 function App() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [city, setCity] = useState("New York City")
   const [results, setResults] = useState(null);
+  const getWeatherFromCoordinates = (coordinates) => {
+    fetch(
+      'http://api.openweathermap.org/geo/1.0/reverse?lat=' + coordinates[0] + '&lon=' + coordinates[1] + '&appid=bc15ad9bb5fba8dc3323f535df967676')
+      .then(res => res.json())
+      .then(
+        (result) => {
+          result = JSON.stringify(result)
+          if (result !== '[]') {
+            result = result.split(',')[0]
+            result = result.split(':')[1]
+            result = result.split('"')[1]
+            console.log('hello' + result)
+            setCity(result)
+            fetch("https://api.openweathermap.org/data/2.5/weather?q=" + result + "&units=metric" + "&appid=" + 'bc15ad9bb5fba8dc3323f535df967676')
+              .then(res => res.json())
+              .then(
+                (result) => {
+                  if (result['cod'] !== 200) {
+                    setIsLoaded(false)
+                  } else {
+                    setIsLoaded(true);
+                    setResults(result);
+                  }
+                },
+                (error) => {
+                  setIsLoaded(true);
+                  setError(error);
+                }
+              )
+          }
 
+        },
+        (error) => {
+          console.log('error')
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
+  }
   useEffect(() => {
-    fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric" + "&appid=" + process.env.REACT_APP_APIKEY)
+    console.log('hey' + city)
+    fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric" + "&appid=" + 'bc15ad9bb5fba8dc3323f535df967676')
       .then(res => res.json())
       .then(
         (result) => {
@@ -25,6 +65,7 @@ function App() {
           setError(error);
         }
       )
+
   }, [city])
 
   if (error) {
@@ -47,6 +88,7 @@ function App() {
             <i><p>{results.name}, {results.sys.country}</p></i>
           </>}
         </div>
+        {isLoaded && results && <Maps city={city} results={results} getWeatherFromCoordinates={getWeatherFromCoordinates}></Maps>}
       </div>
     </>
   }

@@ -1,0 +1,43 @@
+.leaflet-container {
+    margin-left: 150px;
+    margin-right: 150px;
+    border-radius: 8px;
+    margin-top: 8px;
+    height: 300px;
+}
+
+.ButtonContainer {
+    margin-left: 150px;
+    margin-right: 150px;
+    border-radius: 8px;
+    margin-top: 8px;
+    height: 40px;
+}
+
+.button1 {
+    margin-right: 100px;
+    float: right;
+    min-width: 2.5rem;
+    min-height: 2.5rem;
+    width: fit-content;
+    height: fit-content;
+    background-color: #d4d4d4;
+    color: #232b38;
+    border-radius: 10px;
+    transition: all 0.25s ease-in-out;
+    border: none;
+}
+
+.button1:hover {
+    margin-right: 100px;
+    float: right;
+    min-width: 2.5rem;
+    min-height: 2.5rem;
+    width: fit-content;
+    height: fit-content;
+    transition-duration: 0.25s;
+    background-color: #232b38;
+    color: #f5f5f5;
+    border-radius: 10px;
+    border: none;
+}
