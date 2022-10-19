@@ -1,8 +1,9 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import './App.css';
-import logo from './mlh-prep.png';
 import Results from './components/results-components';
+import logo from './mlh-prep.png';
+import MyMap from './components/Map';
 
 function App() {
 	const [error, setError] = useState(null);
@@ -48,11 +49,19 @@ function App() {
 						value={city}
 						onChange={(event) => setCity(event.target.value)}
 					/>
-          <Results 
-            isLoaded={isLoaded}
-            results={results}
-          />
+					<Results isLoaded={isLoaded} results={results} />
 				</div>
+				{isLoaded && results && (
+					<>
+						<MyMap
+							location={results.coord}
+							city={results.name}
+							country={results.sys.country}
+							weather={results.weather[0].main}
+							feels_like={results.main.feels_like}
+						/>
+					</>
+				)}
 			</>
 		);
 	}
