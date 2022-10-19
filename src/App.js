@@ -3,6 +3,7 @@ import './App.css';
 import logo from './mlh-prep.png'
 import Maps from "./Map/Map";
 import Items from './Itemstobring'
+import MyMap from './components/Map'
 
 function App() {
   const [error, setError] = useState(null);
@@ -11,7 +12,7 @@ function App() {
   const [results, setResults] = useState(null);
   const getWeatherFromCoordinates = (coordinates) => {
     fetch(
-      'http://api.openweathermap.org/geo/1.0/reverse?lat=' + coordinates[0] + '&lon=' + coordinates[1] + '&appid=bc15ad9bb5fba8dc3323f535df967676')
+      'http://api.openweathermap.org/geo/1.0/reverse?lat=' + coordinates[0] + '&lon=' + coordinates[1] + "&appid=" + process.env.REACT_APP_APIKEY)
       .then(res => res.json())
       .then(
         (result) => {
@@ -22,7 +23,7 @@ function App() {
             result = result.split('"')[1]
             console.log('hello' + result)
             setCity(result)
-            fetch("https://api.openweathermap.org/data/2.5/weather?q=" + result + "&units=metric" + "&appid=" + 'bc15ad9bb5fba8dc3323f535df967676')
+            fetch("https://api.openweathermap.org/data/2.5/weather?q=" + result + "&units=metric" + "&appid=" + process.env.REACT_APP_APIKEY)
               .then(res => res.json())
               .then(
                 (result) => {
@@ -89,11 +90,10 @@ function App() {
             <i><p>{results.name}, {results.sys.country}</p></i>
           </>}
         </div>
-        {isLoaded && results && <Maps city={city} results={results} getWeatherFromCoordinates={getWeatherFromCoordinates}></Maps>}
       </div>
       {isLoaded && results && <>
         <Items ok = {results.weather[0].main}    /> 
-        <MyMap location={results.coord} city={results.name} country={results.sys.country} weather={results.weather[0].main} feels_like={results.main.feels_like}/>
+        {isLoaded && results && <Maps city={city} results={results} getWeatherFromCoordinates={getWeatherFromCoordinates}></Maps>}
 
       </>}
 
