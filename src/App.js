@@ -10,6 +10,8 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [city, setCity] = useState("New York City")
   const [results, setResults] = useState(null);
+  var key = process.env.REACT_APP_APIKEY;
+  console.log(key)
   const getWeatherFromCoordinates = (coordinates) => {
     fetch(
       'http://api.openweathermap.org/geo/1.0/reverse?lat=' + coordinates[0] + '&lon=' + coordinates[1] + "&appid=" + process.env.REACT_APP_APIKEY)
@@ -51,7 +53,7 @@ function App() {
   }
   useEffect(() => {
     console.log('hey' + city)
-    fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric" + "&appid=" + 'bc15ad9bb5fba8dc3323f535df967676')
+    fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric" + "&appid=" + process.env.REACT_APP_APIKEY)
       .then(res => res.json())
       .then(
         (result) => {
