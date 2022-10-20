@@ -1,88 +1,115 @@
+@import 'leaflet/dist/leaflet.css';
+
 body {
-    background-color: #133667;
-    color: white;
-    text-align: center;
+	background-color: #133667;
+	color: white;
+	text-align: center;
+}
+
+.content-wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 3rem;
+	margin: 0 auto;
+	width: 80%;
 }
 
 .logo {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 20%;
-  margin-top: 20px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 20%;
+	margin-top: 20px;
 }
 
 input {
-  padding: 10px;
-  border-radius: 4px;
-  border: 10px;
-  width: 200px
+	padding: 10px;
+	border-radius: 4px;
+	border: 10px;
+	width: 200px;
 }
 
 .Results {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: white;
-  margin: 20px auto;
-  width: 580px;
-  border-radius: 8px;
-  color: black;
-  padding: 10px;
-  height: 300px;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background-color: white;
+	width: 100%;
+	border-radius: 8px;
+	color: black;
+	height: 500px;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
-/* media query for devices smaller than 600px (iPhone) */
-@media only screen and (max-width: 600px) {
-  .Results {
-    width: 90%;
-  }
-}
-
-
-.dots-loader{
-  width: 60px;
-  aspect-ratio: 2;
-  --_g: no-repeat radial-gradient(circle closest-side,#133667 90%,#0000);
-  background: 
-    var(--_g) 0%   50%,
-    var(--_g) 50%  50%,
-    var(--_g) 100% 50%;
-  background-size: calc(100%/3) 50%;
-  animation: bounce 1s infinite linear;
+.dots-loader {
+	margin: auto;
+	width: 60px;
+	aspect-ratio: 2;
+	--_g: no-repeat radial-gradient(circle closest-side, #000000 90%, #0000);
+	background: var(--_g) 0% 50%, var(--_g) 50% 50%, var(--_g) 100% 50%;
+	background-size: calc(100% / 3) 50%;
+	animation: bounce 1s infinite linear;
 }
 @keyframes bounce {
-    20%{background-position:0%   0%, 50%  50%,100%  50%}
-    40%{background-position:0% 100%, 50%   0%,100%  50%}
-    60%{background-position:0%  50%, 50% 100%,100%   0%}
-    80%{background-position:0%  50%, 50%  50%,100% 100%}
+	20% {
+		background-position: 0% 0%, 50% 50%, 100% 50%;
+	}
+	40% {
+		background-position: 0% 100%, 50% 0%, 100% 50%;
+	}
+	60% {
+		background-position: 0% 50%, 50% 100%, 100% 0%;
+	}
+	80% {
+		background-position: 0% 50%, 50% 50%, 100% 100%;
+	}
 }
 
 .leaflet-popup-content-wrapper,
-.leaflet-popup-tip{
-  background-color: red;
-  color: white;
+.leaflet-popup-tip {
+	background-color: red;
+	color: white;
 }
 
-
-.Items-to-bring{
-  margin-left: 150px;
-  margin-top: 20px;
-  border-radius: 8px;
-  margin-right: 150px;
-  background-color: rgba(64, 65, 70, 0.63);
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+.Items-to-bring {
+	width: 100%;
+	border-radius: 8px;
+	background-color: rgba(64, 65, 70, 0.63);
+	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
-.Items-box{
-  display: flex;
-  justify-content: center;
-  height: 150px;
-  }
+.Items-box {
+	margin: auto;
+	width: 400px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	height: 150px;
+}
 
 .item {
-  margin: 20px;
-} 
+	height: 100px;
+}
 
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+	background-color: cornsilk;
+	color: #000;
+}
+
+.map {
+	display: inline-block;
+	height: 40rem;
+	width: 100%;
+	margin-bottom: 2rem;
+	border-radius: 8px;
+}
+
+/* media query for devices smaller than 600px (iPhone) */
+@media only screen and (max-width: 800px) {
+	.content-wrapper {
+		width: 95%;
+	}
+}
