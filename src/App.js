@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { useEffect, useState } from 'react';
 import './App.css';
-import Results from './components/results-components';
 import logo from './mlh-prep.png';
 import MyMap from './components/Map';
 import Items from './Itemstobring';
+import Loader from './components/loader';
+
+const ResultComponent = React.lazy(
+	() =>
+		new Promise((resolve) => {
+			setTimeout(() => {
+				resolve(import('./components/results-components'));
+			}, 3000);
+		})
+);
 
 function App() {
 	const [error, setError] = useState(null);
@@ -43,27 +52,29 @@ function App() {
 		return (
 			<>
 				<img className='logo' src={logo} alt='MLH Prep Logo'></img>
-				<div>
+				<div className='content-wrapper'>
 					<h2>Enter a city below 👇</h2>
 					<input
 						type='text'
 						value={city}
 						onChange={(event) => setCity(event.target.value)}
 					/>
-					<Results isLoaded={isLoaded} results={results} />
+					<Suspense fallback={<Loader />}>
+						<ResultComponent isLoaded={isLoaded} results={results} />
+					</Suspense>
+					{isLoaded && results && (
+						<>
+							<Items ok={results.weather[0].main} />
+							<MyMap
+								location={results.coord}
+								city={results.name}
+								country={results.sys.country}
+								weather={results.weather[0].main}
+								feels_like={results.main.feels_like}
+							/>
+						</>
+					)}
 				</div>
-				{isLoaded && results && (
-					<>
-						<Items ok={results.weather[0].main} />
-						<MyMap
-							location={results.coord}
-							city={results.name}
-							country={results.sys.country}
-							weather={results.weather[0].main}
-							feels_like={results.main.feels_like}
-						/>
-					</>
-				)}
 			</>
 		);
 	}

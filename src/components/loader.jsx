@@ -1,5 +1,3 @@
 export default function Loader() {
-  return (
-    <div class="dots-loader"></div>
-  );
+	return <div className='dots-loader'></div>;
 }
