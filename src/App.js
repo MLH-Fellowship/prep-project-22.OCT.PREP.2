@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import './App.css';
 import logo from './mlh-prep.png'
 import MyMap from './components/Map'
+import Items from './Itemstobring'
 
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [city, setCity] = useState("New York City")
   const [results, setResults] = useState(null);
+
 
   useEffect(() => {
     fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric" + "&appid=" + "668f62d8d19a113b9ef1570c0656e8ff")
@@ -65,8 +67,11 @@ function App() {
         </div>
       </div>
       {isLoaded && results && <>
+        <Items ok = {results.weather[0].main}    /> 
         <MyMap location={results.coord} city={results.name} country={results.sys.country} weather={results.weather[0].main} feels_like={results.main.feels_like}/>
+
       </>}
+
     </>
   }
 }
