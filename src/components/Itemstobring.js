@@ -1,4 +1,4 @@
-import weather_items from './utils/constants';
+import weather_items from '../utils/constants';
 
 const Items = (props) => {
 	const k = props.ok;
@@ -10,7 +10,7 @@ const Items = (props) => {
 					<img
 						className='item'
 						key={item}
-						src={require(`./assets/${item}.png`)}
+						src={require(`../assets/${item}.png`)}
 						alt={`${item}`}
 					/>
 				))}

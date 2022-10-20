@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import logo from './mlh-prep.png';
 import MyMap from './components/Map';
-import Items from './Itemstobring';
+import Items from './components/Itemstobring';
 import Loader from './components/loader';
 
 const ResultComponent = React.lazy(

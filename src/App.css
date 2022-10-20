@@ -112,4 +112,8 @@ input {
 	.content-wrapper {
 		width: 95%;
 	}
+
+	.Items-box {
+		width: 100%;
+	}
 }
