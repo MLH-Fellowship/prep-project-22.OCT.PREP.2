@@ -15,7 +15,7 @@ function App() {
   console.log(key)
   const getWeatherFromCoordinates = (coordinates) => {
     fetch(
-      'http://api.openweathermap.org/geo/1.0/reverse?lat=' + coordinates[0] + '&lon=' + coordinates[1] + "&appid=" + process.env.REACT_APP_APIKEY)
+      'https://api.openweathermap.org/geo/1.0/reverse?lat=' + coordinates[0] + '&lon=' + coordinates[1] + "&appid=" + process.env.REACT_APP_APIKEY)
       .then(res => res.json())
       .then(
         (result) => {
