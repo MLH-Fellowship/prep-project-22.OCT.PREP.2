@@ -13,8 +13,6 @@ function App() {
     console.log(searchData);
   }
 
-  
-
   useEffect(() => {
     fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric" + "&appid=" + process.env.REACT_APP_APIKEY)
       .then(res => res.json())
@@ -43,7 +41,7 @@ function App() {
         <h2>Enter a city below 👇</h2>
         <div className="container">
           <Search onSearchChange={handleOnSearchChange} />
-          </div>
+        </div>
         <input
           type="text"
           value={city}
