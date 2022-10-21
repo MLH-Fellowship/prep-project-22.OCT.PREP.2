@@ -29,4 +29,54 @@ input {
   padding: 10px;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
+.snow{
+  background: url(../src/assets/Snow.gif);
+}
+
+.rain{
+  background: url(../src/assets/Rain.gif);
+}
+.drizzle{
+  background: url(../src/assets/Drizzle.gif);
+}
+.thunderstorm{
+  background: url(../src/assets/Thunderstorm.gif);
+}
+.clouds{
+  background: url(../src/assets/Clouds.gif);
+ 
+}
+.weather::before{
+  background-color: rgba(0, 0, 0, 0.17);
+  content: '';
+  display: block;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip{
+  background-color: red;
+  color: white;
+}
+
+
+.Items-to-bring{
+  margin-left: 150px;
+  margin-top: 20px;
+  border-radius: 8px;
+  margin-right: 150px;
+  background-color: rgba(64, 65, 70, 0.63);
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.Items-box{
+  display: flex;
+  justify-content: center;
+  height: 150px;
+  }
+
+.item {
+  margin: 20px;
+} 
 
