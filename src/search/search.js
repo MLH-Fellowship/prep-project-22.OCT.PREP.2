@@ -39,7 +39,6 @@ const loadOptions = async (inputValue) => {
       debounceTimeout={600}
       value={search}
       onMenuOpen={() => setSearch("")}
-      // onFocus=
       onChange={handleOnChange}
       loadOptions={loadOptions}
     />
