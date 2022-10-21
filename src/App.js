@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import './App.css';
 import logo from './mlh-prep.png'
 import Search from './search/search';
+import MyMap from './components/Map'
+import Items from './Itemstobring'
+
 
 function App() {
   const [error, setError] = useState(null);
@@ -14,7 +17,7 @@ function App() {
   }
 
   useEffect(() => {
-    fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric" + "&appid=" + process.env.REACT_APP_APIKEY)
+    fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric" + "&appid=" + "668f62d8d19a113b9ef1570c0656e8ff")
       .then(res => res.json())
       .then(
         (result) => {
@@ -31,7 +34,22 @@ function App() {
         }
       )
   }, [city])
-
+  let backgroundChanger = "Results";
+  if (results?.weather ){
+      if(results.weather[0].main === "Clouds"){
+          backgroundChanger = "clouds"
+      } else if(results.weather[0].main === "Thunderstorm"){
+          backgroundChanger = "thunderstorm"
+      } else if(results.weather[0].main === "Drizzle"){
+          backgroundChanger = "drizzle"
+      } else if(results.weather[0].main === "Rain"){
+          backgroundChanger = "rain"
+      } else if(results.weather[0].main === "Snow"){
+          backgroundChanger = "snow"
+      } else{
+          backgroundChanger = "Results"
+      }
+  }
   if (error) {
     return <div>Error: {error.message}</div>;
   } else {
@@ -46,9 +64,8 @@ function App() {
           type="text"
           value={city}
           onChange={event => setCity(event.target.value)} />
-        <div className="Results">
+        <div className={`${results?.weather[0]?.main !== "Clear" && "weather"} ${backgroundChanger}`}>
           {!isLoaded && <h2>Loading...</h2>}
-          {console.log(results)}
           {isLoaded && results && <>
             <h3>{results.weather[0].main}</h3>
             <p>Feels like {results.main.feels_like}°C</p>
@@ -56,6 +73,12 @@ function App() {
           </>}
         </div>
       </div>
+      {isLoaded && results && <>
+        <Items ok = {results.weather[0].main}    /> 
+        <MyMap location={results.coord} city={results.name} country={results.sys.country} weather={results.weather[0].main} feels_like={results.main.feels_like}/>
+
+      </>}
+
     </>
   }
 }
