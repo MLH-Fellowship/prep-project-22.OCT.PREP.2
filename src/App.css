@@ -4,6 +4,15 @@ body {
     text-align: center;
 }
 
+.searchbar {
+  margin-left: 150px;
+  margin-right: 150px;
+  margin-top: 20px;
+  border-radius: 8px;
+  color: black;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
 .logo {
   display: block;
   margin-left: auto;
