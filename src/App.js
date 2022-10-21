@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import './App.css';
 import logo from './mlh-prep.png'
-import MyMap from './components/Map'
+import Maps from "./Map/Map";
 import Items from './Itemstobring'
+import MyMap from './components/Map'
 
 
 function App() {
@@ -10,10 +11,50 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [city, setCity] = useState("New York City")
   const [results, setResults] = useState(null);
+  var key = process.env.REACT_APP_APIKEY;
+  console.log(key)
+  const getWeatherFromCoordinates = (coordinates) => {
+    fetch(
+      'http://api.openweathermap.org/geo/1.0/reverse?lat=' + coordinates[0] + '&lon=' + coordinates[1] + "&appid=" + process.env.REACT_APP_APIKEY)
+      .then(res => res.json())
+      .then(
+        (result) => {
+          result = JSON.stringify(result)
+          if (result !== '[]') {
+            result = result.split(',')[0]
+            result = result.split(':')[1]
+            result = result.split('"')[1]
+            console.log('hello' + result)
+            setCity(result)
+            fetch("https://api.openweathermap.org/data/2.5/weather?q=" + result + "&units=metric" + "&appid=" + process.env.REACT_APP_APIKEY)
+              .then(res => res.json())
+              .then(
+                (result) => {
+                  if (result['cod'] !== 200) {
+                    setIsLoaded(false)
+                  } else {
+                    setIsLoaded(true);
+                    setResults(result);
+                  }
+                },
+                (error) => {
+                  setIsLoaded(true);
+                  setError(error);
+                }
+              )
+          }
 
-
+        },
+        (error) => {
+          console.log('error')
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
+  }
   useEffect(() => {
-    fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric" + "&appid=" + "668f62d8d19a113b9ef1570c0656e8ff")
+
+    fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric" + "&appid=" + process.env.REACT_APP_APIKEY)
       .then(res => res.json())
       .then(
         (result) => {
@@ -29,6 +70,7 @@ function App() {
           setError(error);
         }
       )
+
   }, [city])
   let backgroundChanger = "Results";
   if (results?.weather ){
@@ -68,7 +110,7 @@ function App() {
       </div>
       {isLoaded && results && <>
         <Items ok = {results.weather[0].main}    /> 
-        <MyMap location={results.coord} city={results.name} country={results.sys.country} weather={results.weather[0].main} feels_like={results.main.feels_like}/>
+        {isLoaded && results && <Maps city={city} results={results} getWeatherFromCoordinates={getWeatherFromCoordinates}></Maps>}
 
       </>}
 
