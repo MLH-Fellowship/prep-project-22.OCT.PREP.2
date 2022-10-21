@@ -42,6 +42,9 @@ input {
 	height: 500px;
 	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
+.snow{
+  background: url(../src/assets/Snow.gif);
+}
 
 .dots-loader {
 	margin: auto;
@@ -65,6 +68,28 @@ input {
 	80% {
 		background-position: 0% 50%, 50% 50%, 100% 100%;
 	}
+}
+
+.rain{
+  background: url(../src/assets/Rain.gif);
+}
+.drizzle{
+  background: url(../src/assets/Drizzle.gif);
+}
+.thunderstorm{
+  background: url(../src/assets/Thunderstorm.gif);
+}
+.clouds{
+  background: url(../src/assets/Clouds.gif);
+ 
+}
+.weather::before{
+  background-color: rgba(0, 0, 0, 0.17);
+  content: '';
+  display: block;
+  height: 100%;
+  position: absolute;
+  width: 100%;
 }
 
 .leaflet-popup-content-wrapper,

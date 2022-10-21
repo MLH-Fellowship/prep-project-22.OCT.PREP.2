@@ -6,14 +6,7 @@ import MyMap from './components/Map';
 import Items from './components/Itemstobring';
 import Loader from './components/loader';
 
-const ResultComponent = React.lazy(
-	() =>
-		new Promise((resolve) => {
-			setTimeout(() => {
-				resolve(import('./components/results-components'));
-			}, 3000);
-		})
-);
+const ResultComponent = React.lazy(import('./components/results-components'));
 
 function App() {
 	const [error, setError] = useState(null);
